@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitation</title>
+</head>
+<body>
+    <h1>Invitation for {{ name }}</h1>
+    <form action="/accept" method="post">
+        <input type="hidden" name="name" value="{{ name }}">
+        <button type="submit">Accept Invitation</button>
+    </form>
+</body>
+</html>

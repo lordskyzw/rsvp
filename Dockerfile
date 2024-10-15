@@ -1,32 +1,18 @@
-# Use a lightweight Python image
-FROM python:3.10-slim
-
-# Set environment variables for the Python environment
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+# Use an official Python runtime as a parent image
+FROM python:3.12
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    gcc \
-    libpq-dev \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+# Copy the current directory contents into the container at /app
+COPY . /app
 
-# Copy the requirements file to the container
-COPY requirements.txt .
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Install Python dependencies
-RUN pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt
-
-# Copy the application code into the container
-COPY . .
-
-# Expose the port for the FastAPI app (Railway auto-detects ports, but this is a good practice)
+# Make port 8000 available to the world outside this container
 EXPOSE 8000
 
-# Command to run the FastAPI app using uvicorn
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Run the FastAPI application with Uvicorn
+
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--log-level", "info"]

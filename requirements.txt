@@ -1,6 +1,8 @@
-fastapi==0.95.2
+fastapi[all]
 uvicorn==0.22.0
+hypercorn==0.14.4
 pygwan  
 python-dotenv==1.0.0 
 qrcode==7.4.2 
+jinja2
 Pillow==10.0.1  
