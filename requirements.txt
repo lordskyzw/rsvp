@@ -6,3 +6,5 @@ python-dotenv==1.0.0
 qrcode==7.4.2 
 jinja2
 Pillow==10.0.1  
+pycryptodome
+cryptography
